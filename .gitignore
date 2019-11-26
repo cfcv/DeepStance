@@ -106,3 +106,6 @@ compile_commands.json
 # Qt Creator backups
 
 # End of https://www.gitignore.io/api/qt,c++,qtcreator
+
+
+db/*
