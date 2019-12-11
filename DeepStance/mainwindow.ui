@@ -6,28 +6,45 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>882</width>
-    <height>625</height>
+    <width>1096</width>
+    <height>751</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <layout class="QHBoxLayout" name="horizontalLayout">
+   <layout class="QVBoxLayout" name="verticalLayout_2">
     <item>
-     <layout class="QVBoxLayout" name="verticalLayout">
+     <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
-       <widget class="QListView" name="scenesListView"/>
+       <widget class="QListView" name="scenesListView">
+        <property name="maximumSize">
+         <size>
+          <width>400</width>
+          <height>16777215</height>
+         </size>
+        </property>
+       </widget>
       </item>
       <item>
-       <widget class="QLabel" name="scenesDescriptionLabel">
-        <property name="text">
-         <string/>
+       <widget class="SFMLViewWidget" name="sfmlView" native="true">
+        <property name="minimumSize">
+         <size>
+          <width>1024</width>
+          <height>768</height>
+         </size>
         </property>
        </widget>
       </item>
      </layout>
+    </item>
+    <item>
+     <widget class="QLabel" name="scenesDescriptionLabel">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>
@@ -36,7 +53,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>882</width>
+     <width>1096</width>
      <height>25</height>
     </rect>
    </property>
@@ -52,6 +69,14 @@
   <widget class="QStatusBar" name="statusBar"/>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>SFMLViewWidget</class>
+   <extends>QWidget</extends>
+   <header>sfmlviewwidget.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
