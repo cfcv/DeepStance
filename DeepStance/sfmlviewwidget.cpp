@@ -1,10 +1,12 @@
 #include "sfmlviewwidget.h"
+#include "rectangle.h"
 #include <QDebug>
 
 
 SFMLViewWidget::SFMLViewWidget(QWidget *parent) : QSFMLWidget(parent)
 {
     isimageSet_ = false;
+    font_.loadFromFile("../rc/bahnschrift.ttf");
 }
 
 void SFMLViewWidget::onInit()
@@ -17,6 +19,8 @@ void SFMLViewWidget::onUpdate()
     elapsedTime_ = clock_.getElapsedTime();
     clock_.restart();
 
+    Rectangle r(50, 50, 200, 300, "Desc.");
+
     RenderWindow::clear(sf::Color(0, 0, 0));
     if(isimageSet_) {
         float w = static_cast<float>(size().width()/background_.getLocalBounds().width);
@@ -24,6 +28,7 @@ void SFMLViewWidget::onUpdate()
         background_.setScale(w, w);
         background_.setPosition(0, (size().height() - h)/2.f);
         RenderWindow::draw(background_);
+        r.draw(this, font_);
     }
 }
 

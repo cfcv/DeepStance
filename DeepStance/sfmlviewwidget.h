@@ -18,6 +18,7 @@ public:
 private:
     sf::Texture textBackground_;
     sf::Sprite background_;
+    sf::Font font_;
 
     bool isimageSet_;
 
