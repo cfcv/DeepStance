@@ -1,5 +1,6 @@
 #include "sfmlviewwidget.h"
 #include "rectangle.h"
+#include "utils.h"
 #include <QDebug>
 
 
