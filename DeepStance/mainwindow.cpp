@@ -101,3 +101,14 @@ void MainWindow::readVideoNextFrame()
         setCurrentFrame();
     }
 }
+
+void MainWindow::on_pushButton_clicked()
+{
+    isPlaying_ = !isPlaying_;
+    ui->sfmlView->setPause();
+}
+
+void MainWindow::on_classifierComboBox_currentIndexChanged(int index)
+{
+    ui->sfmlView->setMethod(index);
+}

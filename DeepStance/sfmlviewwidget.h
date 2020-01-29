@@ -19,6 +19,9 @@ public:
 
     std::vector<Rectangle> parseBB(std::string str);
 
+    void setPause();
+    void setMethod(int ind);
+
 private:
     sf::Texture textBackground_;
     sf::Sprite background_;
@@ -32,7 +35,10 @@ private:
     sf::Time elapsedTime_;
     sf::Clock clock_;
 
-    float delta_;
+    float delta_, ratio_;
+    int method_;
+    bool paused_;
+    std::vector<Rectangle> recs_;
 };
 
 #endif // SFMLVIEWWIDGET_H

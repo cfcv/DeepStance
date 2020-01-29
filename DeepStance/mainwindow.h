@@ -31,6 +31,10 @@ private slots:
     void on_scenesListView_clicked(const QModelIndex &index);
     void readVideoNextFrame();
 
+    void on_pushButton_clicked();
+
+    void on_classifierComboBox_currentIndexChanged(int index);
+
 private:
     Ui::MainWindow *ui;
 
