@@ -71,14 +71,18 @@ std::vector<Rectangle> SFMLViewWidget::parseBB(std::string str)
     std::vector<std::string> rectangles = Utility::split(str, "\r\n");
 
     for(auto s:rectangles) {
-        s = s.substr(1, s.size() - 2);
-        std::vector<std::string> params = Utility::split(s, ",");
-        params[4] = params[4].substr(1, params[4].size() - 1);
-        res.emplace_back(std::stoi(params[0]) * ratio_,
-                std::stoi(params[1])*ratio_ + delta_,
-                std::stoi(params[2])* ratio_,
-                std::stoi(params[3])*ratio_,
-                params[4]);
+        if(s[0] == '$') {
+            qDebug() << QString::fromStdString(s);
+            s = s.substr(1);
+            std::vector<std::string> params = Utility::split(s, ",");
+            params[4] = params[4].substr(1, params[4].size() - 1);
+            res.emplace_back(std::stoi(params[0]) * ratio_,
+                    std::stoi(params[1])*ratio_ + delta_,
+                    std::stoi(params[2])* ratio_,
+                    std::stoi(params[3])*ratio_,
+                    params[4]);
+        }
+
     }
 
     return res;

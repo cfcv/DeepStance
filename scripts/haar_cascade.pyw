@@ -20,4 +20,4 @@ cars = cascade_classifier.detectMultiScale(gray_image, 1.1, 3)
 #Retourning all the bounding boxes
 for (x,y,w,h) in cars:
 	box = (x, y, w, h, "Voiture")
-	print(box)
+	print('$', x, ',', y, ',', w, ',', h, ',', "Voiture")
