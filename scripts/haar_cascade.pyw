@@ -1,4 +1,5 @@
 import argparse
+import cv2
 
 #Parsing the path argument
 parser = argparse.ArgumentParser()
@@ -7,10 +8,16 @@ args = parser.parse_args()
 assert (args.path != None),"A path to image must be informed!"
 
 #Reading the image
+image = cv2.imread(args.path)
 
 #classifying 
-box1 = (100,100,50,70,"Voiture")
-box2 = (500,100,80,90,"Voiture")
+cascade_classifier = cv2.CascadeClassifier('../rc/cars.xml')
+gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+
+cars = cascade_classifier.detectMultiScale(gray_image, 1.1, 3)
+
+
 #Retourning all the bounding boxes
-print(box1)
-print(box2)
+for (x,y,w,h) in cars:
+	box = (x, y, w, h, "Voiture")
+	print(box)
