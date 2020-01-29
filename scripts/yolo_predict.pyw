@@ -13,9 +13,10 @@ context = zmq.Context()
 socket = context.socket(zmq.REQ)
 socket.connect("tcp://localhost:5555")
 
-cmd = "haar " + args.path
+cmd = "yolo " + args.path
 socket.send(cmd.encode())
 
 #  Get the reply.
 message = socket.recv()
 print(message.decode())
+

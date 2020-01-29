@@ -29,6 +29,8 @@ void SFMLViewWidget::onUpdate()
 
             if(method_ == 0)
                 cmd = "pythonw ../scripts/haar_cascade.pyw -p" + fname_;
+            else if(method_ == 1)
+                cmd = "pythonw ../scripts/yolo_predict.pyw -p" + fname_;
             else
                 cmd = "";
 
@@ -72,10 +74,8 @@ std::vector<Rectangle> SFMLViewWidget::parseBB(std::string str)
 
     for(auto s:rectangles) {
         if(s[0] == '$') {
-            qDebug() << QString::fromStdString(s);
             s = s.substr(1);
             std::vector<std::string> params = Utility::split(s, ",");
-            params[4] = params[4].substr(1, params[4].size() - 1);
             res.emplace_back(std::stoi(params[0]) * ratio_,
                     std::stoi(params[1])*ratio_ + delta_,
                     std::stoi(params[2])* ratio_,
