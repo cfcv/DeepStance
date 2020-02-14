@@ -60,11 +60,13 @@ void SFMLViewWidget::onUpdate()
 
 void SFMLViewWidget::setBackgroundTexture(std::string fname)
 {
-    textBackground_.loadFromFile(fname);
-    background_.setTexture(textBackground_);
-    isimageSet_ = true;
-    paused_ = false;
-    fname_ = fname;
+    if(fname_ != fname) {
+        textBackground_.loadFromFile(fname);
+        background_.setTexture(textBackground_);
+        isimageSet_ = true;
+        //paused_ = false;
+        fname_ = fname;
+    }
 }
 
 std::vector<Rectangle> SFMLViewWidget::parseBB(std::string str)
@@ -72,14 +74,16 @@ std::vector<Rectangle> SFMLViewWidget::parseBB(std::string str)
     std::vector<Rectangle> res;
     std::vector<std::string> rectangles = Utility::split(str, "\r\n");
 
+    float r = method_ == 0 ? 1.0f:0.9f;
+
     for(auto s:rectangles) {
         if(s[0] == '$') {
             s = s.substr(1);
             std::vector<std::string> params = Utility::split(s, ",");
             res.emplace_back(std::stoi(params[0]) * ratio_,
-                    std::stoi(params[1])*ratio_ + delta_,
-                    std::stoi(params[2])* ratio_,
-                    std::stoi(params[3])*ratio_,
+                    std::stoi(params[1])*ratio_*r + delta_,
+                    std::stoi(params[2])*ratio_,
+                    std::stoi(params[3])*ratio_*r,
                     params[4]);
         }
 
@@ -91,6 +95,11 @@ std::vector<Rectangle> SFMLViewWidget::parseBB(std::string str)
 void SFMLViewWidget::setPause()
 {
     paused_ = !paused_;
+}
+
+void SFMLViewWidget::setPause(bool val)
+{
+    paused_ = val;
 }
 
 void SFMLViewWidget::setMethod(int ind)

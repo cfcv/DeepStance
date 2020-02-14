@@ -20,6 +20,7 @@ public:
     std::vector<Rectangle> parseBB(std::string str);
 
     void setPause();
+    void setPause(bool val);
     void setMethod(int ind);
 
 private:

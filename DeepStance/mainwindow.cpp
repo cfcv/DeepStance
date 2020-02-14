@@ -69,6 +69,8 @@ void MainWindow::findNext()
 {
     std::string nextToken = SampleData_[currentIndex_]["next"];
 
+    size_t ci = currentIndex_;
+
     if(nextToken != "") {
         for(size_t i = 0; i < SampleData_.size(); i++) {
             std::string currToken = SampleData_[i]["token"];
@@ -78,6 +80,9 @@ void MainWindow::findNext()
             }
         }
     }
+
+    if(currentIndex_ == ci)
+        ui->sfmlView->setPause(true);
 }
 
 void MainWindow::setCurrentFrame()
@@ -92,6 +97,7 @@ void MainWindow::on_scenesListView_clicked(const QModelIndex &index)
     findFirstImage(ScenesData_[index.row()]["first_sample_token"]);
     setCurrentFrame();
     isPlaying_ = true;
+    ui->sfmlView->setPause(false);
 }
 
 void MainWindow::readVideoNextFrame()
